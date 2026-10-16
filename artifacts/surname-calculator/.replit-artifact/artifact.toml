@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/"
+title = "Калькулятор фамилии"
+description = "Мобильное приложение на русском языке: переводит буквы фамилии в цифры по заданной таблице, суммирует их, сводит результат к диапазону до 22 и учитывает род фамилии и её склоняемость."
+version = "1.0.0"
+id = "artifacts/surname-calculator"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 21298
+
+[services.development]
+run = "pnpm --filter @workspace/surname-calculator run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/surname-calculator", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/surname-calculator", "run", "serve" ]
+
+[services.env]
+PORT = "21298"
+BASE_PATH = "/"

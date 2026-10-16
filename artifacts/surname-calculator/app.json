@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Калькулятор фамилии",
+    "slug": "surname-calculator",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "backgroundColor": "#F5F0E7",
+      "resizeMode": "contain"
+    },
+    "scheme": "surname-calculator",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {},
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
