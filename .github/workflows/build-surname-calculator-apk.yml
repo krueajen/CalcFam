@@ -1,0 +1,56 @@
+name: Build surname calculator APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-android-apk:
+    name: Build installable Android APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install workspace dependencies
+        run: pnpm install --no-frozen-lockfile --lockfile=false
+
+      - name: Generate the Android project
+        working-directory: artifacts/surname-calculator
+        run: pnpm exec expo prebuild --platform android --no-install
+
+      - name: Build installable APK
+        working-directory: artifacts/surname-calculator/android
+        run: ./gradlew assembleDebug
+
+      - name: Save APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: surname-calculator-debug-apk
+          path: artifacts/surname-calculator/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
