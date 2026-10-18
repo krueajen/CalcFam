@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "b8b20db1-4469-47e5-a38a-1f28672c075e"
+      }
+    },
+    "android": {
+      "package": "com.krueajen.workspace"
+    }
+  }
+}
