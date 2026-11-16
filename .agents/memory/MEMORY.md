@@ -1,0 +1,1 @@
+- [Android SDK setup](android-sdk-setup.md) — `setup-android@v3` defaults to the deprecated `tools` package; set `packages: ''` unless installing supported SDK packages manually.
